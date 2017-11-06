@@ -31,6 +31,12 @@ from nets.inception_v2 import inception_v2_base
 from nets.inception_v3 import inception_v3
 from nets.inception_v3 import inception_v3_arg_scope
 from nets.inception_v3 import inception_v3_base
+from nets.inception_v3_32 import inception_v3_32
+from nets.inception_v3_32 import inception_v3_32_arg_scope
+from nets.inception_v3_32 import inception_v3_32_base
+from nets.inception_v3_64 import inception_v3_64
+from nets.inception_v3_64 import inception_v3_64_arg_scope
+from nets.inception_v3_64 import inception_v3_64_base
 from nets.inception_v4 import inception_v4
 from nets.inception_v4 import inception_v4_arg_scope
 from nets.inception_v4 import inception_v4_base
