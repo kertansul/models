@@ -43,12 +43,6 @@ _NUM_TRAIN_FILES = 10
 # The height and width of each image.
 _IMAGE_SIZE = 32
 
-# The names of the classes.
-_CLASS_NAMES_FILENAME = '/volSSD/playground/Imagenet32_Scripts/map_clsloc.txt'
-with open(_CLASS_NAMES_FILENAME) as f: 
-    ll = f.readlines()
-_CLASS_NAMES = [ x.strip().split(' ')[2] for x in ll ]
-
 
 def _add_to_tfrecord(filename, tfrecord_writer, offset=0):
   """Loads data from the imagenet32 pickle files and writes files to a TFRecord.
@@ -125,6 +119,13 @@ def run(dataset_dir):
   if tf.gfile.Exists(training_filename) and tf.gfile.Exists(testing_filename):
     print('Dataset files already exist. Exiting without re-creating them.')
     return
+
+  # Preparation, read class name file
+  # the file can be downloaded from https://github.com/PatrykChrabaszcz/Imagenet32_Scripts
+  _CLASS_NAMES_FILENAME = os.path.join( dataset_dir, 'map_clsloc.txt')
+  with open(_CLASS_NAMES_FILENAME) as f: 
+    ll = f.readlines()
+  _CLASS_NAMES = [ x.strip().split(' ')[2] for x in ll ]
 
   # First, process the training data:
   with tf.python_io.TFRecordWriter(training_filename) as tfrecord_writer:
