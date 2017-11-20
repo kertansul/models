@@ -132,17 +132,17 @@ def run(dataset_dir):
     offset = 0
     for i in range(_NUM_TRAIN_FILES):
       filename = os.path.join(dataset_dir,
-                              'train_data_batch_%d_py2' % (i + 1))  # 1-indexed.
+                              'train_data_batch_%d_py2_0idx' % (i + 1))  # 1-indexed.
       offset = _add_to_tfrecord(filename, tfrecord_writer, offset)
 
   # Next, process the testing data:
   with tf.python_io.TFRecordWriter(testing_filename) as tfrecord_writer:
     filename = os.path.join(dataset_dir,
-                            'val_data_py2')
+                            'val_data_py2_0idx')
     _add_to_tfrecord(filename, tfrecord_writer)
   
   # Finally, write the labels file:
-  labels_to_class_names = dict(zip(range(1,len(_CLASS_NAMES)+1), _CLASS_NAMES))
+  labels_to_class_names = dict(zip(range(len(_CLASS_NAMES)), _CLASS_NAMES))  # use 0-indexed instead of 1-indexed
   dataset_utils.write_label_file(labels_to_class_names, dataset_dir)
 
   print('\nFinished converting the imagenet32 dataset!')
