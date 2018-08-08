@@ -92,3 +92,7 @@ ENV/
 .idea/
 
 samples/outreach/blogs/segmentation_blogpost/carvana-image-masking-challenge/
+
+# compiled protos, pycocotools
+research/object_detection/protos/*.py
+research/pycocotools/*
