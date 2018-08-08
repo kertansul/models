@@ -60,7 +60,7 @@ DATA_DIR="${1%/}"
 SCRATCH_DIR="${DATA_DIR}/raw-data/"
 mkdir -p "${DATA_DIR}"
 mkdir -p "${SCRATCH_DIR}"
-WORK_DIR="$0.runfiles/__main__"
+WORK_DIR="/volSSD/playground/tf_models/research/slim"
 
 # Download the ImageNet data.
 LABELS_FILE="${WORK_DIR}/datasets/imagenet_lsvrc_2015_synsets.txt"
@@ -90,11 +90,11 @@ BOUNDING_BOX_DIR="${SCRATCH_DIR}bounding_boxes/"
 echo "Finished downloading and preprocessing the ImageNet data."
 
 # Build the TFRecords version of the ImageNet data.
-BUILD_SCRIPT="${WORK_DIR}/build_imagenet_data"
+BUILD_SCRIPT="${WORK_DIR}/datasets/build_imagenet_data.py"
 OUTPUT_DIRECTORY="${DATA_DIR}"
 IMAGENET_METADATA_FILE="${WORK_DIR}/datasets/imagenet_metadata.txt"
 
-"${BUILD_SCRIPT}" \
+python "${BUILD_SCRIPT}" \
   --train_directory="${TRAIN_DIRECTORY}" \
   --validation_directory="${VALIDATION_DIRECTORY}" \
   --output_directory="${OUTPUT_DIRECTORY}" \
