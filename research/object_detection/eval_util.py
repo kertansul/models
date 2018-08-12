@@ -43,7 +43,9 @@ def write_metrics(metrics, global_step, summary_dir):
   """
   logging.info('Writing metrics to tf summary.')
   summary_writer = tf.summary.FileWriterCache.get(summary_dir)
-  for key in sorted(metrics):
+  _keys_unicode = [x.decode('utf8') for x in metrics.keys()]
+  for _key_unicode in sorted(_keys_unicode):
+    key = _key_unicode.encode('utf8')
     summary = tf.Summary(value=[
         tf.Summary.Value(tag=key, simple_value=metrics[key]),
     ])

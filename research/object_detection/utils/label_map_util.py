@@ -110,9 +110,9 @@ def convert_label_map_to_categories(label_map,
                    'label range.', item.id)
       continue
     if use_display_name and item.HasField('display_name'):
-      name = item.display_name
+      name = item.display_name.encode('utf8')  # convert unicode to str
     else:
-      name = item.name
+      name = item.name.encode('utf8')  # convert unicode to str
     if item.id not in list_of_ids_already_added:
       list_of_ids_already_added.append(item.id)
       categories.append({'id': item.id, 'name': name})
